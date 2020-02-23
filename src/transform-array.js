@@ -1,4 +1,4 @@
-/*module.exports = */function transform(arr) {
+module.exports = function transform(arr) {
     // remove line with error and write your code here
     if (!Array.isArray(arr)) throw new Error();
     while(arr.includes('--double-prev') || arr.includes('--double-next') || arr.includes('--discard-next') || arr.includes('--discard-prev') ) {
@@ -36,9 +36,9 @@ return arr;
 };
 
 
-console.log(transform(
+/*console.log(transform(
     [3,'--discard-next',1,'--double-prev']));
-    console.log(transform( ['--discard-next', 1, '--double-prev']));
+    console.log(transform( ['--discard-next', 1, '--double-prev']));*/
 
     /*for (let i = 0; i < arr.length; i++) {
         let item = arr[i];
