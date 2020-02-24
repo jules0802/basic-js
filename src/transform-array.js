@@ -8,7 +8,8 @@ module.exports = function transform(arr) {
                 let tmp = arr[i+1];
                 arr.splice(i, 1, tmp); 
             } else arr.splice(i, 1);       
-        }
+        } 
+        if (arr.includes('--double-next')) continue;
 
     if (arr.includes('--double-prev')) {
         let i = arr.indexOf('--double-prev');        
@@ -17,28 +18,36 @@ module.exports = function transform(arr) {
             arr.splice(i, 1, tmp);
         } else arr.splice(i, 1);     
     }  
+    if (arr.includes('--double-prev')) continue;
     
-    if (arr.includes('--discard-prev')) {
-        let i = arr.indexOf('--discard-prev');
-        if (i != 0) arr.splice(i-1, 2);  
-        else arr.splice(i, 1);        
-    }
-    
+
     if (arr.includes('--discard-next')) {
         let i = arr.indexOf('--discard-next');
         if (i != arr.length-1) arr.splice(i, 2);
         else arr.splice(i, 1);          
-    }
-    
-}
-    
+    }  
+    if (arr.includes('--discard-next')) continue;
+
+    if (arr.includes('--discard-prev')) {
+        let i = arr.indexOf('--discard-prev');
+        if (i != 0) arr.splice(i-1, 2);  
+        else arr.splice(i, 1);     
+    }  
+}    
 return arr;
 };
 
 
 /*console.log(transform(
-    [3,'--discard-next',1,'--double-prev']));
-    console.log(transform( ['--discard-next', 1, '--double-prev']));*/
+    ['--double-next',  true,
+  '--double-next',  { John: 'Smith' },
+  '--discard-prev', 22,
+  '--discard-prev', 1,
+  '--discard-next', 1,
+  true,             'DEF',
+  false,            'GHI',
+  '--discard-prev']));
+    /*console.log(transform( ['--discard-next', 1, '--double-prev']));*/
 
     /*for (let i = 0; i < arr.length; i++) {
         let item = arr[i];
