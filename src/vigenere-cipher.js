@@ -1,11 +1,13 @@
 class VigenereCipheringMachine {
     constructor (machineType) {
-    this.machineType = machineType;
+    if (machineType === undefined) this.machineType = true;
+    else  this.machineType = machineType;
     this.alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     }
 
     encrypt(message, key) {
         if (message === undefined || key === undefined) throw new Error();
+        
             key = key.toUpperCase();
             message = message.toUpperCase();
             let result = '';
@@ -17,13 +19,15 @@ class VigenereCipheringMachine {
                     result += message[i];
                     countOfnotLetters++;
                 }
-            }           
-        return this.machineType === undefined || true? result: result.split('').reverse().join();       
+            } 
+            result = this.machineType === true? result : result.split('').reverse().join('');          
+        return result;       
     }
 
     decrypt(encryptedMessage, key) {
         if (encryptedMessage === undefined || key === undefined) throw new Error();
-        //if (this.machineType == 'reverse') {
+       
+    
             key = key.toUpperCase();
             encryptedMessage = encryptedMessage.toUpperCase();
             let result = '';
@@ -36,8 +40,9 @@ class VigenereCipheringMachine {
                     countOfnotLetters++;
                 }
             }
-            return this.machineType === undefined || true? result: result.split('').reverse().join();  
-       // }
+            result = this.machineType === true? result : result.split('').reverse().join('');
+            return result;  
+       
     }
 }
 
